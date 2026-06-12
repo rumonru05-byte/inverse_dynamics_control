@@ -114,24 +114,42 @@ private:
         desired_joint_accelerations_ = Eigen::VectorXd::Map(msg->data.data(), msg->data.size());
     }
 
-    // Method to calculate joint acceleration
+    // Method to calculate the desired joint torques
     Eigen::VectorXd cancel_dynamics()
     {
         // Initialize M, C, Fb, g_vec, and tau_ext
+        Eigen::MatrixXd M(2, 2);
+        Eigen::VectorXd C(2);
+        Eigen::MatrixXd Fb(2, 2);
+        Eigen::VectorXd g_vec(2);
 
         // Initialize q1, q2, q_dot1, and q_dot2
+        double q1 = joint_positions_(0);
+        double q2 = joint_positions_(1);
+        double q_dot1 = joint_velocities_(0);
+        double q_dot2 = joint_velocities_(1);
 
         // Calculate matrix M
+        M(0, 0) = m1_ * pow(l1_, 2) + m2_ * (pow(l1_, 2) + 2 * l1_ * l2_ * cos(q2) + pow(l2_, 2));
+        M(0, 1) = m2_ * (l1_ * l2_ * cos(q2) + pow(l2_, 2));
+        M(1, 0) = M(0, 1);
+        M(1, 1) = m2_ * pow(l2_, 2);
 
         // Calculate vector C (C is 2x1 because it already includes q_dot)
+        C << -m2_ * l1_ * l2_ * sin(q2) * (2 * q_dot1 * q_dot2 + pow(q_dot2, 2)),
+             m2_ * l1_ * l2_ * pow(q_dot1, 2) * sin(q2);
 
         // Calculate Fb matrix
+        Fb << b1_, 0.0,
+              0.0, b2_;
 
         // Calculate g_vect
+        g_vec << (m1_ + m2_) * l1_ * g_ * cos(q1) + m2_ * g_ * l2_ * cos(q1 + q2),
+                 m2_ * g_ * l2_ * cos(q1 + q2);
 
         // Calculate control torque using the dynamic model: torque = M * q_ddot + C * q_dot + Fb * q_dot + g
         Eigen::VectorXd torque(2);
-        torque << 0, 0;
+        torque = M * desired_joint_accelerations_ + C + Fb * joint_velocities_ + g_vec;
 
         return torque;
     }

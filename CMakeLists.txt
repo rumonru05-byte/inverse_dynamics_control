@@ -21,6 +21,9 @@
     ## COMPILE
     add_executable(uma_arm_dynamics src/uma_arm_dynamics.cpp)
     add_executable(gravity_compensation src/gravity_compensation.cpp)
+    add_executable(dynamics_cancellation src/dynamics_cancellation.cpp)
+    add_executable(pd_controller src/pd_controller.cpp)
+
 
     ament_target_dependencies(uma_arm_dynamics 
       rclcpp
@@ -31,6 +34,21 @@
     )
 
     ament_target_dependencies(gravity_compensation 
+      rclcpp
+      std_msgs
+      sensor_msgs
+      Eigen3
+    )
+
+    ament_target_dependencies(dynamics_cancellation 
+      rclcpp
+      std_msgs
+      sensor_msgs
+      geometry_msgs
+      Eigen3
+    )
+
+    ament_target_dependencies(pd_controller 
       rclcpp
       std_msgs
       sensor_msgs
@@ -49,7 +67,7 @@
       ament_lint_auto_find_test_dependencies()
     endif()
 
-    install(TARGETS uma_arm_dynamics gravity_compensation
+    install(TARGETS uma_arm_dynamics dynamics_cancellation gravity_compensation pd_controller
       DESTINATION lib/${PROJECT_NAME}
       )
 
