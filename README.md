@@ -106,11 +106,13 @@ La compensación de gravedad permite al brazo contrarrestar su propio peso. Al a
   <tr>
     <td align="center">
       <strong>Funcionamiento de la Compensación de Gravedad</strong><br>
-      <img src="archivos_informe/lab3/video/exp1.gif" width="100%" alt="Compensación de gravedad">
+      <img src="archivos_informe/lab3/video/exp1.gif" width="60%" alt="Compensación de gravedad">
     </td>
+  </tr>
+  <tr>
     <td align="center">
-      <strong>Evolución de Estados</strong><br>
-      <img src="archivos_informe/lab3/img/plot1.png" width="100%">
+      <strong>Fuerzas aplicadas, Posición y Velocidad de las articulaciones</strong><br>
+      <img src="archivos_informe/lab3/img/graficas_1.svg" width="60%">
     </td>
   </tr>
 </table>
@@ -122,11 +124,13 @@ El esquema de cancelación convierte al robot en un doble integrador ideal. En e
   <tr>
     <td align="center">
       <strong>Seguimiento de Trayectoria Circular</strong><br>
-      <img src="archivos_informe/lab3/video/exp_circular2.gif" width="100%" alt="Trayectoria circular">
+      <img src="archivos_informe/lab3/video/exp_circular2.gif" width="60%" alt="Trayectoria circular">
     </td>
+  </tr>
+  <tr>
     <td align="center">
-      <strong>Posición y Velocidad Articular</strong><br>
-      <img src="archivos_informe/lab3/img/plot_circ.png" width="100%">
+      <strong>Posición, Velocidad y Aceleración de las articulaciones</strong><br>
+      <img src="archivos_informe/lab3/img/graficas_circ.svg" width="60%">
     </td>
   </tr>
 </table>
@@ -138,11 +142,13 @@ Al someter la planta linealizada a perturbaciones sin un lazo cerrado, el sistem
   <tr>
     <td align="center">
       <strong>Estabilización PD ante Fuerzas Externas</strong><br>
-      <img src="archivos_informe/lab3/video/exp_pd.gif" width="100%" alt="Control PD">
+      <img src="archivos_informe/lab3/video/exp_pd.gif" width="60%" alt="Control PD">
     </td>
+  </tr>
+  <tr>
     <td align="center">
-      <strong>Rechazo de Perturbaciones (Gráfica)</strong><br>
-      <img src="archivos_informe/lab3/img/plot_pd.png" width="100%">
+      <strong>Fuerzas aplicadas, Posición y Velocidad de las articulaciones</strong><br>
+      <img src="archivos_informe/lab3/img/graficas_pd.svg" width="60%">
     </td>
   </tr>
 </table>
