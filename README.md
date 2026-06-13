@@ -87,9 +87,11 @@ $$\tau = g(q)$$
 
 $$\tau = M(q)\ddot{q}_d + C(q,\dot{q})\dot{q} + F_b\dot{q} + g(q)$$
 
-3. **`pd_controller.cpp`:** Cierra el lazo de control sobre el sistema ya linealizado. Al asumir que $\dot{q}_d = 0$ y $\ddot{q}_d = 0$ (regulación a un punto fijo), calcula la nueva ley de control de aceleración $y$ usando matrices de ganancias Proporcional ($K_P$) y Derivativa ($K_D$). Esta aceleración $y$ se publica en el tópico `desired_joint_accelerations` para alimentar al nodo de cancelación de dinámica:
+3. **`pd_controller.cpp`:** Cierra el lazo de control sobre el sistema ya linealizado. Al asumir que $\dot{q}_d = 0$ y $\ddot{q}_d = 0$ (regulación a un punto fijo), calcula la nueva ley de control de aceleración $y$ usando matrices de ganancias Proporcional ($K_P$) y Derivativa ($K_D$):
 
 $$y = K_P(q_d - q) - K_D\dot{q}$$
+
+&emsp;&emsp;Esta aceleración $y$ se publica en el tópico `desired_joint_accelerations` para alimentar al nodo de cancelación de dinámica.
 
 ---
 
